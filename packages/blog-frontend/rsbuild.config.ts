@@ -20,4 +20,11 @@ export default defineConfig({
       root: '../../dist/packages/blog-frontend',
     },
   },
+  tools: {
+    htmlPlugin: {
+      templateParameters: {
+        VITE_API_BASE_URL: process.env.VITE_API_BASE_URL || '/api',
+      },
+    },
+  },
 });

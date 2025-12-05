@@ -1,8 +1,10 @@
 import dotenv from 'dotenv';
 import path from 'path';
 
-// 从项目根目录加载 .env 文件
-dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
+// 仅在开发环境加载 .env 文件
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
+}
 
 interface Environment {
   // 数据库配置
@@ -30,6 +32,12 @@ interface Environment {
 }
 
 function getEnv(): Environment {
+  // 生产环境必须提供 JWT_SECRET
+  const jwtSecret = process.env.JWT_SECRET;
+  if (process.env.NODE_ENV === 'production' && (!jwtSecret || jwtSecret.includes('default'))) {
+    throw new Error('❌ JWT_SECRET must be set to a secure value in production!');
+  }
+
   return {
     DB_HOST: process.env.DB_HOST || 'localhost',
     DB_PORT: parseInt(process.env.DB_PORT || '3306', 10),
@@ -37,10 +45,11 @@ function getEnv(): Environment {
     DB_PASSWORD: process.env.DB_PASSWORD || 'blog_password',
     DB_NAME: process.env.DB_NAME || 'blog_system',
 
-    SERVER_PORT: parseInt(process.env.SERVER_PORT || '3001', 10),
+    // Railway 使用 PORT，本地使用 SERVER_PORT
+    SERVER_PORT: parseInt(process.env.PORT || process.env.SERVER_PORT || '3001', 10),
     NODE_ENV: process.env.NODE_ENV || 'development',
 
-    JWT_SECRET: process.env.JWT_SECRET || 'default-secret-change-in-production',
+    JWT_SECRET: jwtSecret || 'default-secret-change-in-production',
     JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '7d',
 
     FRONTEND_URL: process.env.FRONTEND_URL || 'http://localhost:3000',

@@ -1,0 +1,12 @@
+{
+  "buildCommand": "cd ../.. && npm install && cd packages/blog-frontend && npm run build",
+  "outputDirectory": "../../dist/packages/blog-frontend",
+  "installCommand": "npm install --prefix ../.. && npm install",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
