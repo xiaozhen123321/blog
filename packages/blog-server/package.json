@@ -1,0 +1,36 @@
+{
+  "name": "@blog/server",
+  "version": "1.0.0",
+  "description": "Blog system backend server",
+  "private": true,
+  "type": "commonjs",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "create-admin": "tsx scripts/create-admin.ts"
+  },
+  "dependencies": {
+    "express": "^4.21.1",
+    "mysql2": "^3.11.5",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "winston": "^3.17.0",
+    "express-validator": "^7.2.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/multer": "^1.4.12",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "~5.9.2"
+  }
+}

@@ -1,0 +1,12 @@
+.container {
+  padding: 0;
+}
+
+.articleTitle {
+  font-weight: 500;
+  color: #1890ff;
+}
+
+.articleTitle:hover {
+  text-decoration: underline;
+}

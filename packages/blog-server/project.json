@@ -1,0 +1,28 @@
+{
+  "name": "blog-server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/blog-server/src",
+  "projectType": "application",
+  "tags": ["type:app", "scope:backend"],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "command": "npm run dev --prefix packages/blog-server"
+      }
+    },
+    "build": {
+      "executor": "@nx/js:node",
+      "options": {
+        "command": "npm run build --prefix packages/blog-server"
+      },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "typecheck": {
+      "executor": "@nx/js:node",
+      "options": {
+        "command": "npm run typecheck --prefix packages/blog-server"
+      }
+    }
+  }
+}

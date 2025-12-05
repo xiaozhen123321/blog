@@ -1,0 +1,21 @@
+.categoryNav {
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #262626;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.categoryTag {
+  cursor: pointer;
+  font-size: 14px;
+}

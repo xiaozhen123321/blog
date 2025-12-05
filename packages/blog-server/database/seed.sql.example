@@ -1,0 +1,38 @@
+-- 博客系统种子数据模板
+-- 复制此文件为 seed.sql 并修改为实际值
+USE blog_system;
+
+-- 插入默认管理员用户
+-- 注意：请使用环境变量 ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_EMAIL
+-- 或者手动在这里插入 bcrypt 加密后的密码
+INSERT INTO admin_users (username, password, email) VALUES
+('your_admin_username', 'bcrypt_hashed_password_here', 'your_admin@example.com')
+ON DUPLICATE KEY UPDATE username=username;
+
+-- 插入默认分类
+INSERT INTO categories (name, slug, description) VALUES
+('Technology', 'technology', 'Articles about technology and programming'),
+('Lifestyle', 'lifestyle', 'Lifestyle and personal development'),
+('Travel', 'travel', 'Travel experiences and guides'),
+('Food', 'food', 'Food recipes and reviews')
+ON DUPLICATE KEY UPDATE name=name;
+
+-- 插入示例草稿文章
+INSERT INTO articles (title, content, summary, category_id, status, author_id, views) VALUES
+(
+  'Welcome to My Blog',
+  '<h2>Hello World!</h2><p>This is the first article on my blog. This is a draft article that is not yet published.</p><p>Stay tuned for more exciting content about technology, lifestyle, travel, and food!</p>',
+  'Welcome post introducing the blog. This is a draft article for testing purposes.',
+  1,
+  'draft',
+  1,
+  0
+)
+ON DUPLICATE KEY UPDATE title=title;
+
+-- 显示插入的数据统计
+SELECT 'admin_users' as table_name, COUNT(*) as count FROM admin_users
+UNION ALL
+SELECT 'categories', COUNT(*) FROM categories
+UNION ALL
+SELECT 'articles', COUNT(*) FROM articles;

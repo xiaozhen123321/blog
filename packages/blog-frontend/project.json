@@ -1,0 +1,22 @@
+{
+  "name": "blog-frontend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/blog-frontend/src",
+  "projectType": "application",
+  "tags": ["type:app", "scope:frontend"],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "command": "npm run dev --prefix packages/blog-frontend"
+      }
+    },
+    "build": {
+      "executor": "@nx/js:node",
+      "options": {
+        "command": "npm run build --prefix packages/blog-frontend"
+      },
+      "outputs": ["{workspaceRoot}/dist/packages/blog-frontend"]
+    }
+  }
+}

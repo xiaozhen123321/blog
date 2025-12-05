@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: blog_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: blog_system
+      MYSQL_USER: blog_user
+      MYSQL_PASSWORD: blog_password
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./packages/blog-server/database/init.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./packages/blog-server/database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --character-set-client-handshake=FALSE --skip-character-set-client-handshake
+    networks:
+      - blog_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  blog_network:
+    driver: bridge

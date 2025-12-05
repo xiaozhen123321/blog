@@ -1,0 +1,36 @@
+.card {
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cover {
+  height: 200px;
+  object-fit: cover;
+}
+
+.summary {
+  color: #595959;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.date {
+  color: #8c8c8c;
+  font-size: 12px;
+}
