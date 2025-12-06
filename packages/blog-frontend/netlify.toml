@@ -1,0 +1,23 @@
+[build]
+  # 构建命令
+  command = "cd ../.. && npm install && cd packages/blog-frontend && npm run build"
+
+  # 输出目录（相对于项目根目录）
+  publish = "../../dist/packages/blog-frontend"
+
+  # 基础目录
+  base = "packages/blog-frontend"
+
+# 环境变量（在 Netlify 界面中配置）
+# VITE_API_BASE_URL = "https://your-api.railway.app/api"
+
+# SPA 路由重定向
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# 优化设置
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--legacy-peer-deps"
